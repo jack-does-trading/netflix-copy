@@ -1,0 +1,235 @@
+:root {
+    --one: #780000;
+    --two: #c1121f;
+    --three: #fdf0d5;
+    --four: #003049;
+    --five: #669bbc;
+}
+
+body {
+    background-color: rgba(0,0,0,0.9) !important;
+    color: var(--three) !important;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.navbar {
+    width: 100%;
+    height: 70px;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between !important;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    flex-wrap: nowrap !important;
+}
+
+.imgWrapper {
+    height: 100%;
+    overflow: hidden;
+}
+
+.imgWrapper img {
+    height: 100%;
+    width: 150px; 
+    object-fit: cover; 
+    object-position: center; 
+}
+
+.logo {
+    margin-left: 20px; 
+}
+
+.navbar .navi {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.navbar .navi .custom-button {
+    border-radius: 20%;
+    font-size: 16px !important;
+    text-transform: none;
+}
+
+.custom-button {
+    border-radius: 50px;
+    padding: 10px 20px; 
+    background-color: #333; 
+    color: #fff; 
+    border: 1px solid #666; 
+    overflow: hidden; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.custom-button:hover {
+    background-color: #444; 
+}
+
+.navbar .navi .custom-button:hover {
+    color: var(--three);
+    background-color: var(--two);
+}
+.navbar .account .search svg{
+    font-size: 25px !important;
+}
+.navbar .account-logo {
+    padding: 0;
+    border: 0;
+    min-width: auto;
+}
+
+.css-1d6wzja-MuiButton-startIcon {
+    margin: 0 !important;
+}
+
+.navbar .account-logo svg {
+    font-size: 30px;
+}
+
+.navbar .account-logo svg:hover {
+    color: var(--two);
+}
+
+.navbar .account {
+    width: calc(30% - 150px);
+    display: flex;
+    justify-content: center;
+}
+
+.slider {
+    width: 100%;
+    height: 100vh;
+    position: relative !important;
+    margin-top: -70px; 
+    overflow: hidden;
+}
+
+.carousel-item {
+    width: 100%;
+    height: 750px;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #fff;
+    text-align: left;
+}
+
+/* Additional styling for Swiper carousel */
+/* General Swiper styles */
+.swiper, .swiper-viewed {
+    width: 97%;
+    height: 350px; /* Adjust the height as needed */
+    position: relative; /* Position relative for correct positioning of pagination and navigation buttons */
+  }
+  
+  .swiper-wrapper, .swiper-viewed .swiper-wrapper {
+    display: flex; /* Ensure slides are displayed in a row */
+  }
+  
+  .swiper-slide, .swiper-viewed .swiper-slide {
+    width: 20% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000; /* Background color for slides */
+  }
+  
+  /* Pagination */
+  .swiper-pagination, .swiper-pagination-viewed {
+    position: absolute;
+    bottom: 10px; /* Adjust as needed */
+    text-align: center;
+  }
+  
+  .swiper-pagination-bullet, .swiper-pagination-viewed .swiper-pagination-bullet {
+    background: var(--two) !important; /* Customize pagination bullet color */
+  }
+  
+  /* Navigation Buttons */
+  .swiper-button-prev, .swiper-button-next, .swiper-button-prev-viewed, .swiper-button-next-viewed {
+    color: var(--two) !important; /* Customize arrow button color */
+    z-index: 1000; /* Ensure buttons are above other content */
+  }
+  
+  /* Scrollbar */
+  .swiper-scrollbar, .swiper-scrollbar-viewed {
+    background: var(--two) !important; /* Customize scrollbar color */
+  }
+  
+  /* Thumb styles */
+  .thumb {
+    position: relative;
+    width: 100%; /* Ensure thumbs fill their container */
+    height: 100%; /* Ensure thumbs fill their container */
+    overflow: hidden;
+  }
+  
+  .thumb__image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: opacity 0.3s ease-in-out; /* Smooth opacity transition */
+  }
+  
+  .thumb__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .thumb-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateY(90deg); /* Initial position and rotation */
+    width: 80%;
+    height: 80%;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out; /* Smooth transition for opacity and transform */
+    transform-style: preserve-3d; /* Preserve 3D space for rotation */
+  }
+  
+  .thumb-info h4, .thumb-info p {
+    margin: 0;
+  }
+  
+  .thumb-info h4 {
+    text-align: center;
+  }
+  
+  .thumb-info p {
+    text-align: justify;
+  }
+  
+  .thumb:hover .thumb__image {
+    opacity: 0.4; /* Make the image transparent on hover */
+  }
+  
+  .thumb:hover .thumb-info {
+    opacity: 1; /* Show the info on hover */
+    transform: translate(-50%, -50%) rotateY(0deg); /* Rotate into view */
+  }
+  
