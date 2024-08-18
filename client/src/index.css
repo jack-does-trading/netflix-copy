@@ -232,4 +232,66 @@ body {
     opacity: 1; /* Show the info on hover */
     transform: translate(-50%, -50%) rotateY(0deg); /* Rotate into view */
   }
+
+.footer {
+  width: 100%;
+  height: auto;
+  background-color: var(--one);
+  color: var(--three);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer .container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.footer .container ul,.footer .container ul li{
+  text-decoration: underline;
+  list-style: none;
+}
+.footer .container ul a{
+  text-decoration: none !important;
+  color: var(--three);
+  cursor: pointer;
+}
+.footer .container ul a:hover{
+  color: var(--four);
+}
+.footer .container p{
+  text-align: center;
+  margin: -50px !important;
+  padding: 0;
+}
+
+.footer .container .logo{
+  text-align: center;
+}
+.footer .container .logo img{
+  height: 200px;
+  width: 100%;
+}
+.title-page .container .row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.title-page .carousel-item{
+  height: 500px;
+  width: 100%;
+}
+.title-page .carousel-item img{
+  height: 500px;
+  object-fit: cover;
+}
+
+.title-page .title-info .opa{
+  opacity: 0.4;
+}
   

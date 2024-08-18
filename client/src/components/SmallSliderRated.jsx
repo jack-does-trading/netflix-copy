@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 import Thumbnail from './Thumbnail';
+import { Link } from 'react-router-dom';
 
 const SmallSliderRated = () => {
   useEffect(() => {
@@ -33,15 +34,15 @@ const SmallSliderRated = () => {
     <div className="swiper mt-5">
         <h3 className='mb-3 mt-3'>Top Rated Shows</h3>
       <div className="swiper-wrapper">
-        <div className="swiper-slide"><Thumbnail /></div>
-        <div className="swiper-slide"><Thumbnail /></div>
-        <div className="swiper-slide"><Thumbnail /></div>
-        <div className="swiper-slide"><Thumbnail /></div>
-        <div className="swiper-slide"><Thumbnail /></div>
-        <div className="swiper-slide"><Thumbnail /></div>
-        <div className="swiper-slide"><Thumbnail /></div>
-        <div className="swiper-slide"><Thumbnail /></div>
-        <div className="swiper-slide"><Thumbnail /></div>
+        <div className="swiper-slide"><Link to="/title"><Thumbnail /></Link></div>
+        <div className="swiper-slide"><Link to="/title"><Thumbnail /></Link></div>
+        <div className="swiper-slide"><Link to="/title"><Thumbnail /></Link></div>
+        <div className="swiper-slide"><Link to="/title"><Thumbnail /></Link></div>
+        <div className="swiper-slide"><Link to="/title"><Thumbnail /></Link></div>
+        <div className="swiper-slide"><Link to="/title"><Thumbnail /></Link></div>
+        <div className="swiper-slide"><Link to="/title"><Thumbnail /></Link></div>
+        <div className="swiper-slide"><Link to="/title"><Thumbnail /></Link></div>
+        <div className="swiper-slide"><Link to="/title"><Thumbnail /></Link></div>
         {/* Add more slides as needed */}
       </div>
       <div className="swiper-button-prev"></div>
