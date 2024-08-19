@@ -20,7 +20,7 @@ const Navbar = () => {
 
             <div className="account">
                 <Button className="account-logo search mr-3" startIcon={<FaSearch />}></Button>
-                <Button className="account-logo" startIcon={<MdAccountCircle />}></Button>
+                <Link to="/login"> <Button className="account-logo" startIcon={<MdAccountCircle />}></Button></Link>
             </div>
         </div>
     );
