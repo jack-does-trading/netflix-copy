@@ -5,10 +5,11 @@ import Footer from "./components/Footer.jsx";
 import TitlePage from "./pages/TitlePage.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Login from "./pages/Login.jsx";
+import Signup from "./pages/Signup.jsx";
 
 function Layout() {
   const location = useLocation();
-  const hideNavbarAndFooter = location.pathname === "/login";
+  const hideNavbarAndFooter = location.pathname === "/login" || "/signup";
 
   return (
     <>
@@ -17,6 +18,7 @@ function Layout() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/title" element={<TitlePage />} />
       </Routes>
       {!hideNavbarAndFooter && <Footer />}

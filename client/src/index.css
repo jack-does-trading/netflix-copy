@@ -29,12 +29,12 @@ body {
     flex-wrap: nowrap !important;
 }
 
-.imgWrapper {
+.navbar .imgWrapper {
     height: 100%;
     overflow: hidden;
 }
 
-.imgWrapper img {
+.navbar .imgWrapper img {
     height: 100%;
     width: 150px; 
     object-fit: cover; 
@@ -116,7 +116,7 @@ body {
 
 .carousel-item {
     width: 100%;
-    height: 750px;
+    height: 100vh;
 }
 
 .carousel-item img {
@@ -296,10 +296,144 @@ body {
 }
 
 .login .imgWrapper {
-  position: absolute;
-  top: -10px;
-  right: 0px;
-  width: 200px;
-  height: auto;
+  position: relative;
+  margin-top: -20px;
+  margin-left: -5px !important;
+  height: 200px;
+  width: 100%;
   object-fit: cover;
+  z-index: 100;
+  max-width: 100%;
+}
+.login .imgWrapper a{
+  max-width: 100% !important;
+}
+.login .imgWrapper img{
+  height: 160px;
+  max-width: 100%;
+}
+.login .loginWrapper .login-slider{
+  position: relative;
+  height: 100vh !important;
+  padding: 0;
+}
+
+.loginWrapper{
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.loginWrapper .login-slider{
+  height: 100vh;
+}
+
+.loginWrapper .carousel-indicators{
+  height: 0 !important;
+  width: 0 !important;
+}
+
+.loginWrapper .carousel-control-next-icon, .loginWrapper .carousel-control-prev-icon {
+  height: 0 !important;
+  width: 0 !important; 
+}
+
+.loginWrapper .form-control {
+  background-color: #000;
+  color: var(--three);
+}
+
+/* Flex container to center the content */
+.signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.signup::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://wallpapers.com/images/hd/movie-poster-background-p5qblffj7cvswl5g.jp'); /* Path to your background image */
+  background-size: cover; /* Ensure the image covers the whole area */
+  background-position: center; /* Center the background image */
+  opacity: 0.5; /* Set the opacity of the background image */
+  z-index: -1; /* Ensure the pseudo-element is behind the content */
+}
+/* Center the form and its content */
+.signupWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+
+/* Styling for the form container */
+.signup .form-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background: #000;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the logo */
+.signup .imgWrapper {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.signup .imgWrapper img {
+  max-width: 100px;
+  height: auto;
+}
+
+/* Styling for the form */
+.signup .form-container form {
+  width: 100%;
+}
+
+.signup .form-container h2 {
+  margin-bottom: 20px;
+}
+
+.signup .form-container .form-group {
+  margin-bottom: 15px;
+}
+
+.signup .form-container .form-control {
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #fff; /* Text color */
+  background-color: #000; /* Background color */
+  background-clip: padding-box;
+  border: 1px solid #ced4da; /* Border color */
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+/* Optional: Add focus styling */
+.signup .form-container .form-control:focus {
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .25); /* Optional: add shadow effect on focus */
+}
+
+.signup .form-container .btn {
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  border-radius: .25rem;
+}
+
+.signup .form-container p {
+  margin-top: 10px;
+  text-align: center;
 }

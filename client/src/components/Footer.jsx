@@ -2,7 +2,7 @@ import logo from "../assets/images/logo1.png";
 
 const Footer = () => {
     return (<>
-        <div className="footer">
+        <div className="footer mt-5">
             <div className="container pt-4">
                 <div className="col-md-2">
                     <ul>
