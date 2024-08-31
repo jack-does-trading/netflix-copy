@@ -8,10 +8,8 @@ import SmallSliderRated from "../components/SmallSliderRated";
 const Home = () => {
     return (
         <>
-        <Navbar/>
         <BigSlider/>
         <SmallSliderRated />
-        <Footer/>
         </>
     )
 }

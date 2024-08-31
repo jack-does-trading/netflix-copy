@@ -1,27 +1,77 @@
+import React, { useState, useContext } from 'react';
 import logo from "../assets/images/logo1.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Narcos from "../assets/images/narcos.jpg"
+import { AuthContext } from '../context/AuthContext'; // We'll create this context
 
 const Login = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const { setAuth } = useContext(AuthContext); // Use the AuthContext
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('');
+        try {
+            const response = await fetch('http://localhost:3500/auth', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ user: username, pwd: password }),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Login successful:', data);
+                localStorage.setItem('accessToken', data.accessToken);
+                setAuth({ username, accessToken: data.accessToken }); // Update auth state
+                navigate('/'); // Redirect to home page after successful login
+            } else {
+                setError('Invalid username or password');
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            setError('An error occurred. Please try again.');
+        }
+    };
+
     return (
         <div className="login">
-
             <div className="loginWrapper">
                 <div className="form col-md-4">
                     <div className="imgWrapper logo ml-3 w-100">
                         <Link to="/"><img src={logo} alt="logo" /></Link>
                     </div>
-                    <form className="mt-5">
+                    <form className="mt-5" onSubmit={handleSubmit}>
                         <h2 style={{textAlign: "center"}}>Login</h2>
+                        {error && <div className="alert alert-danger">{error}</div>}
                         <div className="form-group">
-                            <label htmlFor="email">Email</label>
-                            <input type="email" id="email" className="form-control w-90" placeholder="Enter email" required />
+                            <label htmlFor="username">Username</label>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                className="form-control w-90" 
+                                placeholder="Enter username" 
+                                required 
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
-                            <input type="password" id="password" className="form-control" placeholder="Enter password" required />
+                            <input 
+                                type="password" 
+                                id="password" 
+                                className="form-control" 
+                                placeholder="Enter password" 
+                                required 
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                         </div>
                         <button type="submit" className="btn btn-danger btn-block">Login</button>
                         <p className="mt-3">

@@ -1,20 +1,37 @@
-const Thumbnail = () => {
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
+const API_KEY = '8265bd1679663a7ea12ac168da84d2e8';
+
+const fetchMovieDetails = async (movieId) => {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`);
+    return await response.json();
+};
+
+const Thumbnail = ({ movieId }) => {
+    const [movieDetails, setMovieDetails] = useState(null);
+
+    useEffect(() => {
+        fetchMovieDetails(movieId).then(setMovieDetails);
+    }, [movieId]);
+
+    if (!movieDetails) return <div>Loading...</div>;
+
+    const posterUrl = movieDetails.poster_path 
+        ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
+        : 'placeholder-image-url.jpg';
+
     return (
-      <div className="thumb">
-        <div className="thumb__image">
-          <img
-            src="https://www.tallengestore.com/cdn/shop/products/QGM6_1_c34d7d64-85a1-412d-ad5f-18e2b38ee366.jpg?v=1623075171"
-            alt="Thumb"
-          />
-        </div>
-        <div className="thumb-info">
-          <h5 className="mb-4 mt-0">The Queen's Gambit</h5>
-          <p>In a 1950s orphanage, a young girl reveals an astonishing talent for chess and begins
-             an unlikely journey to stardom while grappling with addiction.</p>
-        </div>
-      </div>
+        <Link to={`/title/${movieId}`} className="thumb">
+            <div className="thumb__image">
+                <img src={posterUrl} alt={movieDetails.title} />
+            </div>
+            <div className="thumb-info">
+                <h5 className="mb-4 mt-0">{movieDetails.title}</h5>
+                <p>{movieDetails.overview}</p>
+            </div>
+        </Link>
     );
-  }
-  
-  export default Thumbnail;
-  
+}
+
+export default Thumbnail;
