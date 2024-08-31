@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import SmallSliderRated from '../components/SmallSliderRated';
 
 const API_KEY = '8265bd1679663a7ea12ac168da84d2e8';
 
@@ -51,6 +52,7 @@ const TitlePage = () => {
                     </div>
                 </div>
             </div>
+            <SmallSliderRated />
         </div>
     );
 };
