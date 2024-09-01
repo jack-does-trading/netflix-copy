@@ -15,20 +15,20 @@ const Thumbnail = ({ movieId }) => {
         fetchMovieDetails(movieId).then(setMovieDetails);
     }, [movieId]);
 
-    if (!movieDetails) return <div>Loading...</div>;
+    if (!movieDetails || !movieDetails.poster_path || movieDetails.poster_path.includes('placeholder-image-url.jpg')) {
+        return null; // Don't render anything if there's no movie details or no valid poster
+    }
 
-    const posterUrl = movieDetails.poster_path 
-        ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
-        : 'placeholder-image-url.jpg';
+    const posterUrl = `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`;
 
     return (
         <Link to={`/title/${movieId}`} className="thumb">
             <div className="thumb__image">
                 <img src={posterUrl} alt={movieDetails.title} />
-            </div>
-            <div className="thumb-info">
-                <h5 className="mb-4 mt-0">{movieDetails.title}</h5>
-                <p>{movieDetails.overview}</p>
+                <div className="thumb-info">
+                    <h5 className="mb-4 mt-0">{movieDetails.title}</h5>
+                    <p>{movieDetails.overview}</p>
+                </div>
             </div>
         </Link>
     );

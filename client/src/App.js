@@ -1,7 +1,8 @@
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import SearchResults from './components/SearchResults';
 import { AuthProvider } from "./context/AuthContext";
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
 import Footer from "./components/Footer.jsx";
 import TitlePage from "./pages/TitlePage.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
@@ -28,6 +29,7 @@ function Layout() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path="/title/:id" element={<ProtectedRoute><TitlePage /></ProtectedRoute>} />
+        <Route path="/search" element={<SearchResults />} />
       </Routes>
       {!hideNavbarAndFooter && <Footer />}
     </>
@@ -38,9 +40,9 @@ function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <BrowserRouter>
+        <Router>
           <Layout />
-        </BrowserRouter>
+        </Router>
       </AuthProvider>
     </div>
   );

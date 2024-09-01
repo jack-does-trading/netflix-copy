@@ -59,6 +59,19 @@ body {
     text-transform: none;
 }
 
+.navbar .account .search-form{
+  background-color: transparent !important;
+}
+
+.navbar .account .search-form input{
+  border: 2px solid var(--two);
+  border-radius: 10px;
+  background-color: transparent !important;
+  color: var(--five);
+  margin-right: 10px;
+  
+}
+
 .custom-button {
     border-radius: 50px;
     padding: 10px 20px; 
@@ -189,9 +202,9 @@ body {
   /* Thumb styles */
   .thumb {
     position: relative;
-    width: 100%; /* Ensure thumbs fill their container */
-    height: 100%; /* Ensure thumbs fill their container */
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Add this line */
   }
   
   .thumb__image {
@@ -212,30 +225,34 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotateY(90deg); /* Initial position and rotation */
-    width: 80%;
-    height: 80%;
+    width: 100%; /* Change from 80% to 100% */
+    height: 100%; /* Change from 80% to 100% */
     padding: 10px;
-    color: white;
+    box-sizing: border-box; /* Add this line */
+    color: white !important;
     text-align: center;
-    opacity: 0; /* Initially hidden */
+    opacity: 1; /* Initially hidden */
     transition: opacity 0.3s ease-in-out, transform 0.5s ease-in-out; /* Smooth transition for opacity and transform */
     transform-style: preserve-3d; /* Preserve 3D space for rotation */
+    overflow: hidden;
   }
   
-  .thumb-info h4, .thumb-info p {
+  .thumb-info h5 , .thumb-info p {
+    opacity: 1;
+    color: white !important;
     margin: 0;
-  }
-  
-  .thumb-info h4 {
     text-align: center;
+    overflow: hidden !important;
   }
   
   .thumb-info p {
+    max-height: 100%; /* Add this line */
+    overflow: auto; /* Add this line */
     text-align: justify;
   }
   
-  .thumb:hover .thumb__image {
-    opacity: 0.4; /* Make the image transparent on hover */
+  .thumb:hover .thumb__image img{
+    opacity: 0.5; /* Make the image transparent on hover */
   }
   
   .thumb:hover .thumb-info {
@@ -460,6 +477,7 @@ body {
 
 .volume-slider {
     -webkit-appearance: none;
+    appearance: none;
     width: 100px;
     height: 5px;
     background: #d3d3d3;
@@ -488,4 +506,44 @@ body {
     background: #4CAF50;
     cursor: pointer;
     border-radius: 50%;
+}
+
+.search-results {
+    padding: 20px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.results-grid .item-title{
+  opacity: 0;
+}
+
+.result-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.result-item .thumb .thumb-info h5{
+  text-align: center;
+}
+
+.result-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.result-item .thumb__image:hover p{
+z-index: -10;
+}
+
+.item-title {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
 }

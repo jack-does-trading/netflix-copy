@@ -6,38 +6,34 @@ import { Link } from 'react-router-dom';
 
 const API_KEY = '8265bd1679663a7ea12ac168da84d2e8';
 
-const generateRandomMovieId = () => {
-  return Math.floor(Math.random() * 1000000) + 1;
-};
-
-const fetchValidMovieId = async () => {
+const fetchValidMovie = async () => {
   let isValid = false;
-  let movieId;
+  let movieDetails;
   while (!isValid) {
-    movieId = generateRandomMovieId();
+    const movieId = Math.floor(Math.random() * 1000000) + 1;
     try {
       const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`);
-      const data = await response.json();
-      if (data.poster_path) {
+      movieDetails = await response.json();
+      if (movieDetails.poster_path && !movieDetails.poster_path.includes('placeholder-image-url.jpg')) {
         isValid = true;
       }
     } catch (error) {
       console.error('Error fetching movie:', error);
     }
   }
-  return movieId;
+  return movieDetails;
 };
 
 const SmallSliderRated = () => {
-  const [movieIds, setMovieIds] = useState([]);
+  const [movies, setMovies] = useState([]);
   const swiperRef = useRef(null);
   const loadingMore = useRef(false);
 
   const fetchMoreMovies = async () => {
     if (loadingMore.current) return;
     loadingMore.current = true;
-    const newIds = await Promise.all(Array(5).fill().map(() => fetchValidMovieId()));
-    setMovieIds(prevIds => [...prevIds, ...newIds]);
+    const newMovies = await Promise.all(Array(5).fill().map(() => fetchValidMovie()));
+    setMovies(prevMovies => [...prevMovies, ...newMovies]);
     loadingMore.current = false;
   };
 
@@ -80,19 +76,22 @@ const SmallSliderRated = () => {
     if (swiperRef.current) {
       swiperRef.current.update();
     }
-  }, [movieIds]);
+  }, [movies]);
 
   return (
     <div className="swiper mt-5">
       <h3 className='mb-3 mt-3'>Top Rated Shows</h3>
       <div className="swiper-wrapper">
-        {movieIds.map((movieId, index) => (
-          <div className="swiper-slide" key={index}>
-            <Link to={`/movie/${movieId}`}>
-              <Thumbnail movieId={movieId} />
-            </Link>
-          </div>
-        ))}
+        {movies
+          .filter(movie => movie.poster_path && !movie.poster_path.includes('placeholder-image-url.jpg'))
+          .map((movie, index) => (
+            <div className="swiper-slide" key={index}>
+              <Link to={`/movie/${movie.id}`}>
+                <Thumbnail movieId={movie.id} />
+              </Link>
+            </div>
+          ))
+        }
       </div>
       <div className="swiper-button-prev"></div>
       <div className="swiper-button-next"></div>

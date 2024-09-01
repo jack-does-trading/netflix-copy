@@ -1,10 +1,21 @@
+import { useState } from "react";
 import logo from "../assets/images/logo1.png";
 import Button from '@mui/material/Button';
 import { MdAccountCircle } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+    const [searchQuery, setSearchQuery] = useState("");
+    const navigate = useNavigate();
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            navigate(`/search?query=${encodeURIComponent(searchQuery.trim())}`);
+        }
+    };
+
     return (
         <div className="navbar">
             
@@ -19,7 +30,16 @@ const Navbar = () => {
             </div>
 
             <div className="account">
-                <Button className="account-logo search mr-3" startIcon={<FaSearch />}></Button>
+                <form onSubmit={handleSearch} className="search-form">
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Search..."
+                        className="search-input"
+                    />
+                    <Button type="submit" className="account-logo search mr-3" startIcon={<FaSearch />}></Button>
+                </form>
                 <Link to="/login"> <Button className="account-logo" startIcon={<MdAccountCircle />}></Button></Link>
             </div>
         </div>
