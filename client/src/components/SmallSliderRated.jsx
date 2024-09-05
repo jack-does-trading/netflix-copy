@@ -86,9 +86,7 @@ const SmallSliderRated = () => {
           .filter(movie => movie.poster_path && !movie.poster_path.includes('placeholder-image-url.jpg'))
           .map((movie, index) => (
             <div className="swiper-slide" key={index}>
-              <Link to={`/movie/${movie.id}`}>
-                <Thumbnail movieId={movie.id} />
-              </Link>
+              <Thumbnail movie={movie} />
             </div>
           ))
         }
