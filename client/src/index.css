@@ -6,6 +6,19 @@
     --five: #669bbc;
 }
 
+@font-face {
+  font-family: 'fine'; 
+  src: url('../helvetica-255/Helvetica.ttf') format('truetype');
+  font-weight: normal; 
+  font-style: normal; 
+}
+
+
+body {
+  font-family: 'fine', sans-serif; 
+}
+
+
 body {
     background-color: rgba(0,0,0,0.9) !important;
     color: var(--three) !important;
